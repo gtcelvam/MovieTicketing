@@ -1,12 +1,14 @@
 import React from "react"
-import Fetchmovies from "./service/main"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import Home from "./components/Home"
 
-var App = function(){
-    return(
-        <div>
-            <h1>Working</h1>
-            <Fetchmovies/>
-        </div>
+var App = function () {
+    return (
+        <Router>
+            <Switch>
+                <Route path="/" component={Home} exact/>
+            </Switch>
+        </Router>
     )
 }
 
