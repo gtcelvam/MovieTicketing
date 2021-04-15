@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { fetchMovies } from "../service/main"
 import { fetchGenres } from "../service/main"
 import { fetchMovieByGenre } from "../service/main"
+import { fetchPerson } from "../service/main"
 import {Link} from "react-router-dom"
 import RBCarousel from "react-bootstrap-carousel"
 import ReactStars from "react-rating-stars-component"
@@ -15,12 +16,16 @@ function Home() {
     const [genres, setGenres] = useState([]);
 
     //Movie b Genre
-    const [movieByGenre, setMovieByGenre] = useState([])
+    const [movieByGenre, setMovieByGenre] = useState([]);
+
+    //Top Person of this week
+    const [persons, setPersons] = useState([]);
     useEffect(() => {
         const fetchAPI = async () => {
             setnowPlaying(await fetchMovies());
             setGenres(await fetchGenres());
-            setMovieByGenre(await fetchMovieByGenre())
+            setMovieByGenre(await fetchMovieByGenre());
+            setPersons(await fetchPerson());
         };
         fetchAPI();
     }, []);
@@ -52,10 +57,19 @@ function Home() {
                     </Link>
                     <div className="mt-3 card-detail">
                         <p style={{fontWeight : "bolder", color : "black"}}>{item.title}</p>
-                        <p style={{color : "black"}}>Rated : {item.rating}</p>
+                        <p style={{color : "black"}}><span style={{color : "#990066"}}>Rated :</span> {item.rating}</p>
                         <ReactStars count={item.rating} size={20} color={"#f4c10f"}></ReactStars>
                     </div>
                 </div>
+            </div>
+        )
+    })
+    //Trending Persons
+    const trendingPersons = persons.slice(0,4).map((item,index)=>{
+        return(
+            <div className="col-md-3 col-sm-6" key={index}>
+                <img className="img-fluid round-circle mx-auto d-block" src={item.profileImg} alt={item.name}/>
+                <p className="font-weight-bold text-center">{item.name}</p>
             </div>
         )
     })
@@ -72,6 +86,14 @@ function Home() {
                 </div>
             </div>
             <div className="row mt-3">{movieList}</div>
+            <div className="row mt-3">
+                <div className="col">
+                    <div className="font-weight-bold" style={{color : "#5a606b"}}>
+                        <p>TRENDING OF THIS WEEK</p>
+                    </div>
+                </div>
+            </div>
+            <div className="row mt-3">{trendingPersons}</div>
         </div>
     )
 }
