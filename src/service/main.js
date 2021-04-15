@@ -106,3 +106,27 @@ export const fetchPerson = async ()=>{
         
     }
 }
+
+export const fetchTopratedMovie = async ()=>{
+    try {
+        const {data} = await axios.get(topratedUrl,{
+            params :{
+                api_key : API_Key,
+                language : "en_US",
+                page : 1
+            }
+        })
+        const modifiedData = data["results"].map((item)=>({
+            id : item.id,
+            backPoster: posterUrl+item.backdrop_path,
+            popularity: item.popularity,
+            title: item.title,
+            poster: posterUrl+item.poster_path,
+            overview: item.overview,
+            rating: item.vote_average
+        }));
+        return modifiedData;
+    } catch (error) {
+        
+    }
+}
