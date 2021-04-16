@@ -100,7 +100,6 @@ export const fetchPerson = async ()=>{
             profileImg : `https://image.tmdb.org/t/p/w200${item.poster_path}`,
             known : item.known_for_department
         }))
-        console.log(data);
         return modifiedData
     } catch (error) {
         
@@ -114,6 +113,75 @@ export const fetchTopratedMovie = async ()=>{
                 api_key : API_Key,
                 language : "en_US",
                 page : 1
+            }
+        })
+        const modifiedData = data["results"].map((item)=>({
+            id : item.id,
+            backPoster: posterUrl+item.backdrop_path,
+            popularity: item.popularity,
+            title: item.title,
+            poster: posterUrl+item.poster_path,
+            overview: item.overview,
+            rating: item.vote_average
+        }));
+        return modifiedData;
+    } catch (error) {
+        
+    }
+}
+
+export const fetchMovieDetail = async (id)=>{
+    try {
+        const {data} = await axios.get(`${movieUrl}/${id}`,{
+            params :{
+                api_key : API_Key,
+                language : "en_US",
+                page : 1
+            }
+        });
+        return data;
+    } catch (error) {
+        
+    }
+}
+
+export const fetchMovieVideos = async (id)=>{
+    try {
+        const {data} = await axios.get(`${movieUrl}/${id}/videos`,{
+            params : {
+                api_key : API_Key
+            }
+        });
+        return data["results"][0]
+    } catch (error) {
+        
+    }
+}
+
+export const fetchCasts = async(id)=>{
+    try {
+        const {data} = await axios.get(`${movieUrl}/${id}/credits`,{
+            params : {
+                api_key : API_Key
+            }
+        });
+        const modifiedData = data["cast"].map((cast)=>({
+            id : cast.cast_id,
+            character : cast.character,
+            name : cast.name,
+            img : `https://image.tmdb.org/t/p/w200${cast.profile_path}`
+        }));
+        return modifiedData
+    } catch (error) {
+        
+    }
+}
+export const fetchSimilarMovies = async (id)=>{
+    try {
+        const {data} = await axios.get(`${movieUrl}/${id}/similar`,{
+            params:{
+                api_key : API_Key,
+                language : "en_US"
             }
         })
         const modifiedData = data["results"].map((item)=>({

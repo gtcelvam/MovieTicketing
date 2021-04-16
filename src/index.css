@@ -39,3 +39,14 @@ code {
   justify-content: center;
   align-items: center;
 }
+/* Slider Arrow */
+.fa-arrow-alt-circle-right{
+  color : #5a606b;
+  font-size : 40px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+.fa-arrow-alt-circle-right:hover{
+  color: #990066;
+  transition: all 0.4s ease-in-out;
+}

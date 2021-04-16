@@ -34,8 +34,12 @@ function Home() {
         };
         fetchAPI();
     }, []);
+    //Handle Click for Genre
+    const handleGenre = async (genre_id)=>{
+        setMovieByGenre(await fetchMovieByGenre(genre_id));
+    }
     //Now Playing slider
-    const movies = nowPlaying.slice(0, 5)
+    const movies = nowPlaying.slice(0, 5);
     const slider = movies.map((item, index) => 
     <div style={{width : "100%",height : "500"}} key={index}>
         <div className="carousel-center">
@@ -48,7 +52,7 @@ function Home() {
     const genrelist = genres.map((item,index)=>{
         return(
             <li className="list-inline-item" key={index}>
-                <button className="btn btn-outline-info">{item.name}</button>
+                <button className="btn btn-outline-info" onClick={()=>{handleGenre(item.id)}}>{item.name}</button>
             </li>
         )
     })
@@ -61,7 +65,7 @@ function Home() {
                         <img className="img-fluid" src={item.poster} alt={item.title}/>
                     </Link>
                     <div className="mt-3 card-detail">
-                        <p style={{fontWeight : "bolder", color : "black"}}>{item.title}</p>
+                        <p style={{fontWeight : "bolder", color : "black"}} className="text-center">{item.title}</p>
                         <p style={{color : "black"}}><span style={{color : "#990066"}}>Rated :</span> {item.rating}</p>
                         <ReactStars count={item.rating} size={20} color={"#f4c10f"}></ReactStars>
                     </div>
@@ -107,11 +111,27 @@ function Home() {
                     <ul className="list-inline">{genrelist}</ul>
                 </div>
             </div>
-            <div className="row mt-3">{movieList}</div>
+            {/* Arrow Fontawesome */}
+            <div className="row mt-3 ">
+                <div className="col">
+                    <div className="float-right">
+                        <i className="far fa-arrow-alt-circle-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div className="row mt-3">{movieList}</div> 
             <div className="row mt-3">
                 <div className="col">
                     <div className="font-weight-bold" style={{color : "#5a606b"}}>
                         <p>TRENDING OF THIS WEEK</p>
+                    </div>
+                </div>
+            </div>
+            {/* Arrow Fontawesome */}
+            <div className="row mt-3 ">
+                <div className="col">
+                    <div className="float-right">
+                        <i className="far fa-arrow-alt-circle-right"></i>
                     </div>
                 </div>
             </div>
@@ -120,6 +140,14 @@ function Home() {
                 <div className="col">
                     <div className="font-weight-bold" style={{color : "#5a606b"}}>
                         <p>TOP RATED MOVIES</p>
+                    </div>
+                </div>
+            </div>
+            {/* Arrow Fontawesome */}
+            <div className="row mt-3 ">
+                <div className="col">
+                    <div className="float-right">
+                        <i className="far fa-arrow-alt-circle-right"></i>
                     </div>
                 </div>
             </div>
@@ -151,7 +179,7 @@ function Home() {
                         <li>
                             <p>
                                 <strong>
-                                    <i className="fas fa-map-marker-alt"></i>Address :
+                                    <i className="fas fa-map-marker-alt"></i> :
                                 </strong>{" "}
                                 City, State, Country
                             </p>

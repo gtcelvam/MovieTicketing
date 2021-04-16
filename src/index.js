@@ -9,11 +9,9 @@ import "bootstrap/dist/css/bootstrap.css"
 
 
 ReactDOM.render(
-  <React.StrictMode>
     <div>
       <App />
-    </div>
-  </React.StrictMode>,
+    </div>,
   document.getElementById('root')
 );
 
