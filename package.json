@@ -20,6 +20,7 @@
     "react-scripts": "4.0.3",
     "web-vitals": "^1.1.1"
   },
+  "homepage": "https://photosearchapp.web.app/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
