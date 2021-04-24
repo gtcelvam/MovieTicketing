@@ -39,6 +39,12 @@ code {
   justify-content: center;
   align-items: center;
 }
+.card-detail p:nth-child(1){
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+}
 /* Slider Arrow */
 .fa-arrow-alt-circle-right{
   color : #5a606b;

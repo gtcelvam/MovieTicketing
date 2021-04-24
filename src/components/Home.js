@@ -43,8 +43,7 @@ function Home() {
     const slider = movies.map((item, index) => 
     <div style={{width : "100%",height : "500"}} key={index}>
         <div className="carousel-center">
-           
-            <img style={{ height: 600 }} src={item.backPoster} alt={item.title} />
+            <img className="d-block w-100" style={{ height: 600 }} src={item.backPoster} alt={item.title} />
         </div>
         <Link to={`/movie/${item.id}`}>
         <div className="carousel-center play-btn"><i className="fas fa-play" style={{fontSize : 80,color: "yellow"}}></i></div>
@@ -63,7 +62,7 @@ function Home() {
     const movieList = movieByGenre.slice(0,4).map((item,index)=>{
         return(
             <div className="col-md-3 col-sm-6" key={index}>
-                <div className="card">
+                <div className="card m-1">
                     <Link to={`movie/${item.id}`}>
                         <img className="img-fluid" src={item.poster} alt={item.title}/>
                     </Link>
@@ -89,7 +88,7 @@ function Home() {
     const topRatedList = topRated.slice(0,4).map((item,index)=>{
         return(
             <div className="col-md-3 text-center" key={index}>
-                <div className="card">
+                <div className="card m-1">
                     <Link to={`/movie/${item.id}`}>
                         <img className="img-fluid" src={item.poster} alt={item.title}/>
                     </Link>

@@ -60,7 +60,7 @@ function MovieDetail({ match }) {
     const similarMovieList = similarMovie.slice(0,4).map((item,index)=>{
         return(
             <div className="col-md-3 text-center" key={index}>
-                <div className="card">
+                <div className="card m-1">
                     <Link to={`/movie/${item.id}`}>
                         <img className="img-fluid" src={item.poster} alt={item.title}/>
                     </Link>
@@ -79,7 +79,7 @@ function MovieDetail({ match }) {
                 <MoviePlayerModal show={isOpen} onHide={() => { setIsOpen(false) }}></MoviePlayerModal>
                 <div className="col">
                     <div className="carousel-center">
-                        <img style={{ height: 600 }} src={`https://image.tmdb.org/t/p/original${detail.backdrop_path}`} alt={detail.title} />
+                        <img className="d-block w-100" style={{ height: 600 }} src={`https://image.tmdb.org/t/p/original${detail.backdrop_path}`} alt={detail.title} />
                     </div>
                     <div className="carousel-center play-btn"><i onClick={() => { setIsOpen(true) }} className="fas fa-play" style={{ fontSize: 80, color: "yellow" }}></i></div>
                     <div className="carousel-caption" style={{ textAlign: "center", fontSize: 35 }}>{detail.title}</div>
