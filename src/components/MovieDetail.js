@@ -138,6 +138,16 @@ function MovieDetail({ match }) {
                     </div>
                 </div>
                 <div className="row mt-3">{similarMovieList}</div>
+                {/* Home Button */}
+                <div className="row">
+                    <div className="col">
+                        <Link to="/">
+                        <div className="home-btn">
+                            <p className="fas fa-home"></p>
+                        </div>
+                        </Link>
+                    </div>
+                </div>
                 {/* FOOTER */}
                 <hr className="mt-5" style={{borderTop : "1px solid #5a606b"}}/>
             <div className="row mt-3 mb-5">
